@@ -1,12 +1,13 @@
 import requests
 import json
 import subprocess
+import os
 
 location = "139.728605,35.704896"
 app_id = "dj00aiZpPW96NExRczNOcU1VQiZzPWNvbnN1bWVyc2VjcmV0Jng9NDY-"
 url = "https://map.yahooapis.jp/weather/V1/place"
 
-state_file = "/home/pi/homeautomation/weather/rain_state.conf"
+state_file = os.path.join(os.getcwd(), "rain_state.conf")
 
 payload = {'coordinates': location, 'appid': app_id, 'output': 'json', 'interval': '5'}
 r = requests.get(url, params=payload)
