@@ -48,15 +48,23 @@ if is_forecast_rain and (not is_past_rain):
     fout.close()
 
     # 発話
-    rain_start_hour = rain_start_date[0:2] if rain_start_date[0:1] == 0 else rain_start_date[1:2]
-    rain_start_minutes = rain_start_date[2:4] if rain_start_date[2:3] == 0 else rain_start_date[3:4]
+    if rain_start_date[0:1] == '0':
+        rain_start_hour = rain_start_date[1:2] + '時'
+    else:
+        rain_start_hour = rain_start_date[0:2] + '時'
+
+    if rain_start_date[2:3] == '0':
+        if rain_start_date[3:4] == '0':
+            rain_start_minutes = 'ちょうど'
+        else:
+            rain_start_minutes = rain_start_date[3:4] + '分'
+    else:
+        rain_start_minutes = rain_start_date[2:4] + '分'
 
     speak_sentence = 'お天気を、お知らせします。' + \
                      rain_start_hour +\
-                     '時' + \
                      rain_start_minutes +\
-                     '分' + \
-                     '頃より雨が降り出します。'
+                     'より雨が降り出します。'
     speak_command = 'node /home/pi/homeautomation/notifier/speak.js ' + speak_sentence
     subprocess.call(speak_command, shell=True)
 
