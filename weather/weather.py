@@ -3,7 +3,7 @@ import json
 import subprocess
 import os
 
-location = "139.728605,35.704896"
+location = "139.719339,35.702789"
 app_id = "dj00aiZpPW96NExRczNOcU1VQiZzPWNvbnN1bWVyc2VjcmV0Jng9NDY-"
 url = "https://map.yahooapis.jp/weather/V1/place"
 
